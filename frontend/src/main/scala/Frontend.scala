@@ -1,5 +1,8 @@
-import com.raquo.laminar.api.L.given
+import com.raquo.airstream.web.DomEventStream
+import com.raquo.laminar.api.L.{*, given}
+import com.raquo.airstream.{*, given}
 import org.scalajs.dom
+import org.scalajs.dom.{MessageEvent, WebSocket}
 
 import scala.scalajs.js
 import scala.scalajs.js.annotation.*
@@ -29,6 +32,13 @@ def LiveChart(): Unit =
   """
 
   setupCounter(dom.document.getElementById("counter"))
+  val websocket = new WebSocket("ws:localhost:80/api/subscriptions")
+//  val stream: EventStream[MessageEvent] = DomEventStream[dom.MessageEvent](websocket,"onopen")
+
+  websocket.onopen = (event) => {
+    websocket.send("FOO")
+  }
+
 end LiveChart
 
 def setupCounter(element: dom.Element): Unit =

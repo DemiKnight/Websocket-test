@@ -1,3 +1,5 @@
+package uk.co.alexknight.wstest.backend
+
 import zio.*
 import zio.http.*
 import zio.http.ChannelEvent.Read
@@ -5,7 +7,7 @@ import zio.http.codec.PathCodec.string
 
 object BackendMain extends ZIOAppDefault {
   private val socketApp: WebSocketApp[Any] =
-    Handler.webSocket { channel =>
+    Handler.webSocket { (channel: WebSocketChannel) =>
       channel.receiveAll {
         case Read(WebSocketFrame.Text("FOO")) =>
           channel.send(Read(WebSocketFrame.Text("BAR")))
@@ -23,6 +25,11 @@ object BackendMain extends ZIOAppDefault {
       Method.GET / "greet" / string("name") -> handler {
         (name: String, req: Request) =>
           Response.text(s"Greetings {$name}!")
+      },
+      Method.POST / "boardcast" / string("message") -> handler {
+        (message: String, req: Request) =>
+          // todo send all websockets a message
+          Response.ok
       },
       Method.GET / "subscriptions" -> handler(socketApp.toResponse)
     ).toHttpApp
