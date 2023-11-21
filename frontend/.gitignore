@@ -1,0 +1,49 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+*.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+# Fundamental to the build
+target/
+/.bsp/
+/scalalib/fetchedSources/
+/partest/fetchedSources/
+/linker-interface/**/scalajs-logging-src/
+/linker-interface/**/scalajs-logging-src-jars/
+/node_modules/
+
+# IDE specific
+.cache
+.classpath
+.project
+.settings/
+/.idea/
+/.idea_modules/
+bin/
+/.bloop/
+/.metals/
+/project/**/metals.sbt
+/.vscode/
+
+# User specific
+/.jvmopts
+/.sbtopts
