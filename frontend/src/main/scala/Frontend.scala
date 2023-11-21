@@ -1,5 +1,6 @@
 import com.raquo.laminar.api.L.given
 import org.scalajs.dom
+import org.scalajs.dom.WebSocket
 
 import scala.scalajs.js
 import scala.scalajs.js.annotation.*
@@ -29,6 +30,11 @@ def LiveChart(): Unit =
   """
 
   setupCounter(dom.document.getElementById("counter"))
+  val websocket = new WebSocket("ws:localhost:80/api/subscriptions")
+  websocket.onopen = (event) => {
+    websocket.send("FOO")
+  }
+
 end LiveChart
 
 def setupCounter(element: dom.Element): Unit =
