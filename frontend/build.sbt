@@ -22,5 +22,6 @@ scalaJSLinkerConfig ~= {
 
 libraryDependencies ++= Seq(
   "org.scala-js" %%% "scalajs-dom" % "2.4.0",
-  "com.raquo" %%% "laminar" % "15.0.1"
+  "com.raquo" %%% "laminar" % "16.0.0",
+  "com.raquo" %%% "laminar" % "16.0.0"
 )
