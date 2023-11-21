@@ -1,0 +1,11 @@
+version: "3.9"
+services:
+  proxy:
+    image: haproxy:2.8.4-alpine3.18
+    ports:
+      - "80:80"
+    volumes:
+      - ./haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg
+
+volumes:
+  dbData:
